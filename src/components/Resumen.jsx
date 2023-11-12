@@ -1,26 +1,27 @@
+import { useNavigate } from "react-router-dom";
 import { formatearDinero } from "../helpers"
 import useKiosco from "../hooks/useKiosco"
 import ResumenProducto from "./ResumenProducto"
 
 export default function Resumen() {
 
-  const {pedido , total ,handleSubmitNuevaOrden} = useKiosco()
+  const {pedido , total } = useKiosco()
   const comprobarPedido = () => pedido.length === 0;
-
-  const handleSumit = (e) =>{
-    e.preventDefault()
-    handleSubmitNuevaOrden()
+  const navegate = useNavigate();
+  const handleclick = (e) =>{
+   
+    navegate('/compra');
   }
 
   return (
-    <aside className="w-72 h-screen overflow-y-scroll p-5">
+    <div className=" py-2 px-5 min-w-min">
       <h1 className="text-4xl font-black">
         Mi Pedido
         </h1>
         <p className="text-lg my-5">
           Aquí podrás ver el resumen y totales de tu pedido
         </p>
-        <div className="py-10">
+        <div className="py-2">
           {
             pedido.length === 0 ? (
               <p className="text-center text-2xl">
@@ -42,17 +43,17 @@ export default function Resumen() {
         <p className="textxl mt-10">
           Total: {formatearDinero(total)}
         </p>
-        <form
-        onSubmit={handleSumit}
-        className="w-full">
+
           <div className="mt-5">
-            <input type="submit" 
-            className={  `${comprobarPedido() ? "bg-indigo-100" : "bg-indigo-600 hover:bg-indigo-800" } px-5 py-2 rounded uppercase font-bold text-white text-center w-full cursor-pointer` }
-            value="Confirmar Pedido"
-            disabled= {comprobarPedido()} />
+           
+            <button
+            onClick={handleclick}
+            className={  `${comprobarPedido() ? "bg-gray-200" : "bg-ambar-primary hover:bg-red-secundary" } px-5 py-2 rounded-2xl uppercase font-bold text-white text-center w-full cursor-pointer   ` }
+           
+            disabled= {comprobarPedido()} >Comprar</button>
 
           </div>
-        </form>
-    </aside>
+       
+    </div>
   )
 }

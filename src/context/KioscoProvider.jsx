@@ -1,8 +1,9 @@
 import { createContext , useState} from "react";
 import { toast } from "react-toastify";
-import { categorias as categoriasDB } from "../data/categorias"
+
 import { useEffect } from "react";
 import clienteAxios from "../config/apiKiosco";
+
 
 const KioscoContext = createContext()
 
@@ -15,6 +16,7 @@ const KioscoProvider = ( {children}) => {
     const [producto, setProducto] = useState({})
     const [pedido, setPedido] = useState([])
     const [total, setTotal] = useState(0)
+
     
 
     const obtenerCategorias =  async () => {
@@ -47,8 +49,9 @@ const KioscoProvider = ( {children}) => {
    
     
     const handleClickCategoria = (id) => {
-        const actual = categorias.find( (c) => c.id === id)
-        setCategoria(actual)
+        const actual = categorias.find( (c) => c.id === id);
+        setCategoria(actual);
+       
     }
 
     const handleClickModal = () => {
@@ -84,28 +87,34 @@ const KioscoProvider = ( {children}) => {
         setModal(!modal)
     }
 
-    const handleSubmitNuevaOrden = async () => {
-        const token = localStorage.getItem('AUTH_TOKEN')
+    const handleSubmitNuevaOrden = async (name) => {
+        const token = localStorage.getItem('AUTH_TOKEN');
         try {
-          const {data} =  await clienteAxios.post('/pedidos',
+          const {data} =  await clienteAxios.post('/pedido',
             {
+                name,
                 total,
                 productos: pedido.map((p) => ({
                     id:p.id,
-                    candidad:p.candidad 
-                    }))
+                    cantidad:p.cantidad 
+                    })),
+                
+                  
             },
             {
                 headers: {
                     Authorization:`Bearer ${token}`
                 }
-            })
+            }
+            
+               
+            );
             toast.success(data.message)
             setTimeout(() => {
                 setPedido([])
             }, 1000);
         } catch (error) {
-            toast.warning('Error en el pedido')
+            toast.warning('Error en el pedidovvv')
         }
 
     }

@@ -38,7 +38,7 @@ export default function ModalProducto() {
           </button>
         </div>
         <h2 className="text-3xl font-bold mt-5">{producto.nombre}</h2>
-        <p className="mt-5 font-black text-5xl text-amber-500">
+        <p className="mt-5 font-black text-5xl text-red-secundary">
           {formatearDinero(producto.precio)}
         </p>
 
@@ -74,7 +74,7 @@ export default function ModalProducto() {
         </div>
         <button
           type="button"
-          className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white uppercase rounded"
+          className="bg-ambar-primary hover:bg-red-secundary px-5 py-2 mt-5 text-white uppercase rounded-2xl"
           onClick={()=>  {
             handleAgregarProducto({ ...producto, cantidad})
             

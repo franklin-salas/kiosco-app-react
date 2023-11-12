@@ -29,7 +29,7 @@ export const Layout = () => {
   return (
    <>
  
-    <div className="md:flex ">
+    <div className="md:flex  min-w-min">
       <Sidebar/>
        
        <main className="flex-1 h-screen overflow-y-scroll bg-gray-100 no-scrollbar">

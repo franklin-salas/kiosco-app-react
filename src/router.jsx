@@ -7,6 +7,8 @@ import Registro from "./views/Registro";
 import { AdminLayout } from "./layouts/AdminLayout";
 import { Ordenes } from "./views/Ordenes";
 import { Productos } from "./views/Productos";
+import Resumen from "./components/Resumen";
+import { Compra } from "./components/Compra";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
             {
                 index: true, // es para q carge junto al elemento padre
                 element: <Inicio/>
+            },
+            {
+                path:'/resumen',
+                element: <Resumen/>
+            },
+            {
+                path:'/compra',
+                element: <Compra/>
             }
         ]
 

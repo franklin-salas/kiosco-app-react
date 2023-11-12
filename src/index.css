@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&family=Roboto:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  html {
+    font-family: 'Roboto', sans-serif;
+  }
+}
 
 @layer utilities {
   @variants responsive {
@@ -17,11 +25,26 @@
   }
 }
 
+
+
+.contenedor-loading{
+  position: relative;
+  height: 100vh;
+
+}
+
+.contenedor-loading .loading {
+  position: absolute;
+  top: calc(50% - 120px) ;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
 img{
   display: block;
   width: 100%;
 }
 
 nav a.active {
-  color: rgb(253, 224, 71);
+  color: #f22e3e;
 }

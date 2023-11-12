@@ -16,12 +16,7 @@ export const useAuth = ( {middleware,url}) => {
                 }).then(res => res.data)
                 .catch(error => {
                     throw Error(error) 
-                  // if(error.response.status === 500){
-                  //   throw Error(error.response.message) 
-                  // } else
-                  // if(error.response.status === 422){
-                  //   throw Error(error.response.data.errors) 
-                  // }
+                 
                   })
                 
                 )
@@ -82,7 +77,7 @@ export const useAuth = ( {middleware,url}) => {
           } catch (error) {
            
             if(!error.response){
-              return
+              return;
             }
 
             if(error.response.status === 500){
@@ -115,7 +110,9 @@ export const useAuth = ( {middleware,url}) => {
       }
 
       if(middleware === 'auth' && error){
-        navigate('/auth/login')
+        localStorage.removeItem('AUTH_TOKEN');
+         mutate(undefined);
+        navigate('/auth/login');
       }
       
     }, [user,error])
